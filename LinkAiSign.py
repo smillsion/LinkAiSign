@@ -8,7 +8,8 @@ import base64
 import json
 
 '''
-cron: * * * * *
+cron: 15 3 * * *
+new Env("LinkAi签到")
 '''
 
 def sign(token):
