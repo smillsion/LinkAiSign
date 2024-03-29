@@ -31,14 +31,9 @@ def sign(token):
 
 if __name__ == '__main__':
     token = os.getenv("LinkAiToken")
-    # mt_version = os.getenv("Mt_Version")
     if not token:
         print('LinkAiToken is null')
         exit()
-    # mt_bark_server = os.getenv("MT_BARK_SERVER")
-    # mt_bark_key = os.getenv("MT_BARK_KEY")
-    # server_check = False;
-    # key_check = False;
     score, code, message = sign(token)
     if code != '200':
         print('fail: ' + message)
