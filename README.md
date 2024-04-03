@@ -16,6 +16,8 @@ link-ai签到获取积分
 
 添加环境变量 `LinkAiToken` 后可正常使用
 
+如果需要使用bark失败推送，需要配置 `MT_BARK_SERVER` 和 `MT_BARK_KEY` 环境变量
+
 ## 贡献代码
 项目没有经过严格测试。有问题可以在 **[Issues](https://github.com/smillsion/LinkAiSign/issues)** 反馈。
 
