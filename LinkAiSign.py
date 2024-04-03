@@ -1,16 +1,12 @@
-import datetime
 import os
-import random
-import time
-
 import requests
-import base64
 import json
 
 '''
-cron: 15 3,15 * * *
+cron: 15 3 * * *
 new Env("LinkAi签到")
 '''
+
 
 def make_request(url, headers):
     try:
@@ -36,6 +32,23 @@ def get_data(endpoint, token):
     return score, success, response_data
 
 
+def push_msg(server, key, msg):
+    try:
+        payload = {
+            "body": msg,
+            "device_key": key,
+            "title": f"LinkAi签到失败",
+            "badge": 1
+        }
+        requests.post(
+            url=f"{server}/push",
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            data=json.dumps(payload)
+        )
+    except requests.exceptions.RequestException as e:
+        print(f'HTTP Request failed: {e}')
+
+
 if __name__ == '__main__':
     token = os.getenv("LinkAiToken")
     if not token:
@@ -52,6 +65,10 @@ if __name__ == '__main__':
         elif balance_success:
             message += f'\n当前积分【{balance_score}】'
         print(f'签到失败: {message}')
+        mt_bark_server = os.getenv("MT_BARK_SERVER")
+        mt_bark_key = os.getenv("MT_BARK_KEY")
+        if mt_bark_server and mt_bark_key:
+            push_msg(mt_bark_server, mt_bark_key, message)
     else:
         message = f'\n当前积分【{balance_score}】' if balance_success else ''
         print(f'签到成功: 获得积分【{sign_score}】{message}')
