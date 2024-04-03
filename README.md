@@ -14,9 +14,12 @@ link-ai签到获取积分
 ## 拉库指令
 青龙拉库指令 `ql repo https://smillsion/LinkAiSign.git`
 
-添加环境变量 `LinkAiToken` 后可正常使用
-
-如果需要使用bark失败推送，需要配置 `MT_BARK_SERVER` 和 `MT_BARK_KEY` 环境变量
+#### 1. 登陆Link-Ai平台后在浏览器控制台执行以下代码
+``` javascript
+copy(localStorage.token); console.log(localStorage.token);
+```
+#### 2. 将以上获得的密钥，添加到环境变量 `LinkAiToken` 后即可使用
+#### 3. 如果需要使用bark失败推送，需要配置 `MT_BARK_SERVER` 和 `MT_BARK_KEY` 环境变量(bark只有ios应用，可在AppStore下载)
 
 ## 贡献代码
 项目没有经过严格测试。有问题可以在 **[Issues](https://github.com/smillsion/LinkAiSign/issues)** 反馈。
