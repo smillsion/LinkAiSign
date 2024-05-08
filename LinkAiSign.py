@@ -160,7 +160,7 @@ if __name__ == '__main__':
                 else:
                     if login_message:
                         print(f'重新登陆失败，' + login_message)
-                        message += '，尝试重新登陆失败，请检查用户名和密码，或手动获取Token'
+                        message = message + f'❌❌❌\n尝试重新登陆失败，请检查用户名和密码，或手动获取Token'
                     else:
                         print(f'重新登陆失败，请手动登陆获取token后写入环境变量')
         elif results[1].get('success', ''):
@@ -171,7 +171,7 @@ if __name__ == '__main__':
             mt_bark_server = os.getenv("MT_BARK_SERVER")
             mt_bark_key = os.getenv("MT_BARK_KEY")
             if mt_bark_server and mt_bark_key:
-                push_msg(mt_bark_server, mt_bark_key, message)
+                push_msg(mt_bark_server, mt_bark_key, f'❌❌❌' + message)
     else:
         message = f'✅✅✅\n当前积分【{results[1].get("data", {}).get("score", -1)}】' if results[1].get('success', '') else ''
         print(f'✅✅✅签到成功: 获得积分【{results[0].get("data", {}).get("score", -1)}】{message}')
