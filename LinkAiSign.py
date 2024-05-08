@@ -154,7 +154,7 @@ if __name__ == '__main__':
                         elif results[1].get('success', ''):
                             message += f'❌❌❌\n当前积分【{results[1].get("data", {}).get("score", -1)}】'
                     else:
-                        message = f'当前积分【{results[1].get("data", {}).get("score", -1)}】' if results[1].get('success', '') else ''
+                        message = f'✅✅✅\n当前积分【{results[1].get("data", {}).get("score", -1)}】' if results[1].get('success', '') else ''
                         print(f'✅✅✅签到成功: 获得积分【{results[0].get("data", {}).get("score", -1)}】{message}')
                         is_finally_fail = False
                 else:
