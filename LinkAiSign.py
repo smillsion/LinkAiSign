@@ -2,6 +2,7 @@
 import os
 import requests
 import json
+from notification import push_msg
 
 '''
 cron: 15 3 * * *
@@ -90,22 +91,6 @@ def set_env(link_ai_token):
             # 新增
             requests.post(url, json=body, headers=headers)
             print(f"新增成功")
-
-def push_msg(server, key, msg):
-    try:
-        payload = {
-            "body": msg,
-            "device_key": key,
-            "title": f"LinkAi签到失败",
-            "badge": 1
-        }
-        requests.post(
-            url=f"{server}/push",
-            headers={"Content-Type": "application/json; charset=utf-8"},
-            data=json.dumps(payload)
-        )
-    except requests.exceptions.RequestException as e:
-        print(f'HTTP Request failed: {e}')
 
 
 if __name__ == '__main__':
